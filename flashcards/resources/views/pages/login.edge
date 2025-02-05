@@ -1,0 +1,16 @@
+
+@component('components/layout.edge', { title: 'login' })
+  <section>
+    <div class="login-card">
+      <h2 class="title">
+        Se connecter
+      </h2>
+      <input type="email" placeholder="Email" id="email" class="input" />
+      <input type="password" placeholder="Mot de passe" id="password" class="input" />
+      <button class="button" onclick="handleLogin()">Connexion</button>
+      <p class="forgot-password">
+        <a href="#">Mot de passe oublié ?</a>
+      </p>
+    </div>
+  </section>
+@endcomponent
