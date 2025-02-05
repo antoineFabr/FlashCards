@@ -11,7 +11,16 @@ Avant de commencer l'installation, assurez-vous d'avoir les logiciels suivants i
 - Docker (v24.0.7) [Optionnel]
 - Git (v2.40.1)
 
-## 2 installer les dépendances
+## 2 déplacer vous dans le fichier flashcards du repo
+
+## 3 renommer le fichier .env.example
+
+```sh
+mv .env.example .env
+
+```
+
+## 4 installer les dépendances
 
 ```sh
 npm install
@@ -25,14 +34,21 @@ yarn install
 
 ```
 
-## 3 lancer le serveur
+## 5 générer une clé
+
+```sh
+node ace generate:key
+
+```
+
+## 6 lancer le serveur
 
 ```sh
 npm run dev
 
 ```
 
-## 4 ouvrez un navigateur et allez à l'adresse :
+## 7 ouvrez un navigateur et allez à l'adresse :
 
 ```arduino
 http://localhost:3333
