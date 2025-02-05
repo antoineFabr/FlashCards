@@ -1,0 +1,14 @@
+@component('components/layout.edge', { title: 'Register' })
+  <section>
+    <div class="login-card">
+      <h2 class="title">
+        Créer un Compte
+      </h2>
+      <input type="email" placeholder="Email" id="email" class="input" />
+      <input type="password" placeholder="Mot de passe" id="password" class="input" />
+      <button class="button" onclick="handleLogin()">Sign up</button>
+
+    </div>
+    <button class="buttonSignin" onclick="handleLogin()">Sign In</button>
+  </section>
+@endcomponent
