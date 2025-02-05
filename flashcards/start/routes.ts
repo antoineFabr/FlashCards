@@ -8,6 +8,9 @@
 */
 
 import router from '@adonisjs/core/services/router'
+import AuthController from '../app/controllers/Pagecontrollers.ts'
 
-router.on('/').render('pages/home')
-router.on('login').render('pages/login')
+router.get('/accueil', [AuthController, 'accueil'])
+router.get('/', [AuthController, 'redirectToLogin'])
+router.get('/login', [AuthController, 'login'])
+router.get('/register', [AuthController, 'register'])
