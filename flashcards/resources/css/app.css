@@ -73,3 +73,80 @@ footer {
     padding: 20px;
   }
 }
+.alert {
+  padding: 20px;
+  border: 2px solid #00ffcc;
+  border-radius: 10px;
+  background: rgb(0, 255, 204);
+  box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+  font-size: 24px;
+  text-align: center;
+  animation:
+    flash 1.5s infinite alternate,
+    slideIn 0.5s forwards;
+}
+@keyframes flash {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.5;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+/* Style sobre pour les champs de formulaire */
+input {
+  padding: 12px;
+  margin: 12px 0;
+  border: 2px solid #444;
+  border-radius: 6px;
+  font-size: 16px;
+  background-color: #2b2b2b; /* Fond sombre */
+  color: #e1e1e1; /* Texte clair */
+  transition: all 0.3s ease;
+}
+
+/* Effet futuriste et subtil sur le focus des champs */
+input:focus {
+  border-color: #6c757d; /* Gris clair */
+  background-color: #3a3a3a; /* Légèrement plus clair que le fond */
+  box-shadow: 0 0 8px rgba(108, 117, 125, 0.6);
+  outline: none;
+}
+
+/* Style futuriste du bouton */
+/* Style pour le bouton */
+button {
+  padding: 12px 24px;
+  background-color: #444; /* Fond sombre du bouton */
+  color: #e1e1e1; /* Texte clair */
+  font-size: 18px;
+  border: 2px solid transparent;
+  border-radius: 30px;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none; /* Le bouton ne peut pas être cliqué avant d'être visible */
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  font-weight: bold;
+}
+
+/* Affichage du bouton */
+button.visible {
+  opacity: 1;
+  pointer-events: all;
+}

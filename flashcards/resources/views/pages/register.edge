@@ -1,14 +1,16 @@
 @component('components/layout.edge', { title: 'Register' })
   <section>
-    <div class="login-card">
-      <h2 class="title">
-        Créer un Compte
-      </h2>
-      <input type="email" placeholder="Email" id="email" class="input" />
-      <input type="password" placeholder="Mot de passe" id="password" class="input" />
-      <button class="button" onclick="handleLogin()">Sign up</button>
+    <h2>
+      Créer un compte
+    </h2>
+    <form action="/register" method="POST" id="register">
+      {{ csrfField() }}
+      <input type="text" name="full_name" placeholder="Nom d'utilisateur" id="full_name" />      <br />
+      <input type="email" name="email" placeholder="Email" id="email" />      <br />
+      <input type="password" name="password" placeholder="Mot de passe" id="password" />      <br />
+      <input type="password" name="confirm_password" placeholder="Confirmation du mot de passe" id="confirm" />      <br />
+      <button type="submit" id="submit" style="display: none;">S'inscrire</button>      <br />
+    </form>
 
-    </div>
-    <button class="buttonSignin" onclick="handleLogin()">Sign In</button>
   </section>
 @endcomponent
