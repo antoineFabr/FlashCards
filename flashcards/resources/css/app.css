@@ -117,36 +117,24 @@ input {
   color: #e1e1e1; /* Texte clair */
   transition: all 0.3s ease;
 }
-
-/* Effet futuriste et subtil sur le focus des champs */
-input:focus {
-  border-color: #6c757d; /* Gris clair */
-  background-color: #3a3a3a; /* Légèrement plus clair que le fond */
-  box-shadow: 0 0 8px rgba(108, 117, 125, 0.6);
-  outline: none;
-}
-
-/* Style futuriste du bouton */
-/* Style pour le bouton */
 button {
   padding: 12px 24px;
-  background-color: #444; /* Fond sombre du bouton */
-  color: #e1e1e1; /* Texte clair */
+  background-color: #444;
+  color: #e1e1e1;
   font-size: 18px;
   border: 2px solid transparent;
   border-radius: 30px;
   cursor: pointer;
   opacity: 0;
-  pointer-events: none; /* Le bouton ne peut pas être cliqué avant d'être visible */
+  pointer-events: none;
   transition:
     opacity 0.3s ease,
     transform 0.3s ease,
     box-shadow 0.3s ease;
   font-weight: bold;
 }
-
-/* Affichage du bouton */
 button.visible {
   opacity: 1;
   pointer-events: all;
+  display: inline;
 }
