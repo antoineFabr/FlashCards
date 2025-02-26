@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+/*document.addEventListener('DOMContentLoaded', function () {
   // Récupération des éléments
   const form = document.getElementById('register')
   const password = document.getElementById('password')
@@ -32,4 +32,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Vérification initiale pour afficher ou masquer le bouton
   checkPasswords()
-})
+})*/

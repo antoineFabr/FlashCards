@@ -11,7 +11,7 @@ import router from '@adonisjs/core/services/router'
 import AuthController from '../app/controllers/auth_controllers.js'
 import UsersController from '#controllers/users_controller'
 
-router.get('/accueil', [AuthController, 'accueil'])
+router.get('/accueil', [AuthController, 'accueil']).as('accueil')
 
 router.get('/', [AuthController, 'redirectToLogin'])
 
