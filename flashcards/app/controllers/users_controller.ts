@@ -3,10 +3,13 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from '#models/user'
 import { UserValidator } from '#validators/user'
+import { loginUserValidator } from '#validators/loginuser'
+import { dd } from '@adonisjs/core/services/dumper'
 
 export default class UsersController {
   public async register({ request, session, response }: HttpContextContract) {
     //const data = request.only(['full_name', 'email', 'password'])
+    dd(request.all())
     const payload = await request.validateUsing(UserValidator)
 
     const user = await User.create({
@@ -34,6 +37,12 @@ export default class UsersController {
       session.flash({ error: 'ce nom existe deja !' })
       
     }*/
+  }
+  public async login({ request, session, response }: HttpContextContract) {
+    //dd(request.all())
+    await request.validateUsing(loginUserValidator)
+    dd(request.all())
+    return response.redirect().toRoute('accueil')
   }
 
   public async getUsers({ response }: HttpContextContract) {

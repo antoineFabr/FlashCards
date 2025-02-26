@@ -15,7 +15,9 @@ router.get('/accueil', [AuthController, 'accueil']).as('accueil')
 
 router.get('/', [AuthController, 'redirectToLogin'])
 
-router.get('/login', [AuthController, 'login'])
+router.get('/login', [AuthController, 'login']).as('getlogin')
+
+router.post('/login', [UsersController, 'login']).as('postlogin')
 
 router.get('/register', [AuthController, 'register']).as('showregister')
 
