@@ -10,9 +10,15 @@ export default class UsersController {
       session.flash({ error: 'Tous les champs sont obligatoires !' })
       return response.redirect('back') // Redirige vers le formulaire
     }
-    await User.create(data)
-    session.flash({ success: 'Compte créé avec succès !' })
-    return response.redirect('http://localhost:3333/login')
+    const existUser = await User.findBy('full_name', data.full_name)
+    if (existUser) {
+      await User.create(data)
+      session.flash({ success: 'Compte créé avec succès !' })
+      return response.redirect('http://localhost:3333/login')
+    } else {
+      session.flash({ error: 'ce nom existe deja !' })
+      return response.redirect('back') // Redirige vers le formulaire
+    }
   }
 
   public async getUsers({ response }: HttpContextContract) {
