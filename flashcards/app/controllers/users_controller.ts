@@ -9,18 +9,22 @@ import { dd } from '@adonisjs/core/services/dumper'
 export default class UsersController {
   public async register({ request, session, response }: HttpContextContract) {
     //const data = request.only(['full_name', 'email', 'password'])
-    dd(request.all())
-    const payload = await request.validateUsing(UserValidator)
-
-    const user = await User.create({
-      full_name: payload.full_name,
-      email: payload.email,
-      password: payload.password,
-    })
+    try {
+      const payload = await request.validateUsing(UserValidator)
+      const user = await User.create({
+        full_name: payload.full_name,
+        email: payload.email,
+        password: payload.password,
+      })
+      session.flash('success', 'Utilisateur créé avec succès !')
+      return response.redirect().toRoute('accueil')
+    } catch (error) {
+      session.flash({ error: 'votre nom d utilisateur ou votre mail est deja pris !' })
+      return response.redirect('back')
+    }
 
     // Stocker un message flash pour succès
-    session.flash('success', 'Utilisateur créé avec succès !')
-    return response.redirect().toRoute('accueil') // Redirige vers le formulaire
+
     //const data = request.only(['email', 'password', 'full_name'])
 
     /*if (!data.email || !data.password || !data.full_name) {
