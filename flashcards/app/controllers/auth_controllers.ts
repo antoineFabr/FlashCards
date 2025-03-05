@@ -3,6 +3,7 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 export default class AuthController {
   public async accueil({ view }: HttpContextContract) {
+    //const decks = await
     return view.render('pages/home')
   }
 
