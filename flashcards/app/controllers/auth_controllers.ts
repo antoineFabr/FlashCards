@@ -1,8 +1,8 @@
+import { dd } from '@adonisjs/core/services/dumper'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 export default class AuthController {
   public async accueil({ view }: HttpContextContract) {
-    console.log('accueil')
     return view.render('pages/home')
   }
 
