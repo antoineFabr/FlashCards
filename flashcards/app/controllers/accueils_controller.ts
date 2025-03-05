@@ -1,38 +1,41 @@
-import type { HttpContext } from '@adonisjs/core/http'
-
+import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import Deck from '#models/deck'
 export default class AccueilsController {
   /**
    * Display a list of resource
    */
-  async index({}: HttpContext) {}
 
+  public async accueil({ view, auth }: HttpContextContract) {
+    const userId = auth.user.id
+    const decks = await Deck.query().where('user_id', userId).orderBy('name', 'asc')
+
+    return view.render('pages/home', { decks })
+  }
   /**
    * Display form to create a new record
    */
-  async create({}: HttpContext) {}
-
+  user_id = 123
   /**
    * Handle form submission for the create action
    */
-  async store({ request }: HttpContext) {}
+  public async store({ request, session, response }: HttpContextContract) {
+    const { name, description } = await request.validateUsing()
 
+    await Deck.create({ name, description, user_id })
+  }
   /**
    * Show individual record
    */
-  async show({ params }: HttpContext) {}
 
   /**
    * Edit individual record
    */
-  async edit({ params }: HttpContext) {}
 
   /**
    * Handle form submission for the edit action
    */
-  async update({ params, request }: HttpContext) {}
 
   /**
    * Delete record
    */
-  async destroy({ params }: HttpContext) {}
 }

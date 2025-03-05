@@ -261,7 +261,10 @@ p {
     transform 0.3s ease;
   text-align: center;
 }
-
+a {
+  color: black;
+  text-decoration: none;
+}
 .create-deck-link:hover {
   background-color: #2b6cb0;
   transform: translateY(-5px);
