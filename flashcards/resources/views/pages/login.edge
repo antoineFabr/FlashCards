@@ -5,6 +5,11 @@
       <h2 class="title">
         Se connecter
       </h2>
+      @if(session.get('error'))
+        <div class="alert alert-danger">
+          {{ session.get('error') }}
+        </div>
+      @endif
       <form action="{{ route('postlogin') }}" method="POST" id="login">
         {{ csrfField() }}
         <input type="email" placeholder="Email" id="email" class="input" name="email" />

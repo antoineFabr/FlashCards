@@ -5,6 +5,7 @@ import User from '#models/user'
 import { UserValidator } from '#validators/user'
 import { loginUserValidator } from '#validators/loginuser'
 import { dd } from '@adonisjs/core/services/dumper'
+import hash from '@adonisjs/core/services/hash'
 
 export default class UsersController {
   public async register({ request, session, response }: HttpContextContract) {
@@ -44,9 +45,26 @@ export default class UsersController {
   }
   public async login({ request, session, response }: HttpContextContract) {
     //dd(request.all())
-    await request.validateUsing(loginUserValidator)
+    try {
+      const payload = await request.validateUsing(loginUserValidator)
+      const user = await User.findBy('email', payload.email)
+      if (!user) {
+        session.flash({ error: 'votre mot de passe ou votre mail est incorect' })
+        return response.redirect('back')
+      }
+      const passwordValid = await hash.verify(user.password, payload.password)
+      if (!passwordValid) {
+        session.flash({ errors: [{ message: "L'email ou le mot de passe est incorrect." }] })
+        return response.redirect('back')
+      }
+
+      return response.redirect().toRoute('accueil')
+    } catch (error) {
+      session.flash({ error: 'votre mot de passe ou votre mail est incorect' })
+      return response.redirect('back')
+    }
+
     dd(request.all())
-    return response.redirect().toRoute('accueil')
   }
 
   public async getUsers({ response }: HttpContextContract) {

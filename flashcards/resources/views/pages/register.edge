@@ -8,10 +8,6 @@
         {{ session.get('error') }}
       </div>
     @endif
-    
-    
-    
-    
     <form action="{{ route('postregister') }}" method="POST" id="register">
       {{ csrfField() }}
       <input type="text" name="full_name" placeholder="Nom d'utilisateur" id="full_name" required />      <br />
