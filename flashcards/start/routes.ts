@@ -10,8 +10,10 @@
 import router from '@adonisjs/core/services/router'
 import AuthController from '../app/controllers/auth_controllers.js'
 import UsersController from '#controllers/users_controller'
+import AccueilsController from '#controllers/accueils_controller'
+import { middleware } from './kernel.js'
 
-router.get('/accueil', [AuthController, 'accueil']).as('accueil')
+router.get('/accueil', [AccueilsController, 'accueil']).as('accueil').use(middleware.auth())
 
 router.get('/', [AuthController, 'redirectToLogin'])
 
@@ -24,3 +26,5 @@ router.get('/register', [AuthController, 'register']).as('showregister')
 router.post('/register', [UsersController, 'register']).as('postregister')
 
 router.get('/users', [UsersController, 'getUsers'])
+
+router.post('/accueil/store', [AccueilsController, 'store'])

@@ -18,7 +18,7 @@ export default class UsersController {
         password: payload.password,
       })
       session.flash('success', 'Utilisateur créé avec succès !')
-      return response.redirect().toRoute('accueil')
+      return response.redirect().toRoute('getlogin')
     } catch (error) {
       session.flash({ error: 'votre nom d utilisateur ou votre mail est deja pris !' })
 
