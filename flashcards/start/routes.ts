@@ -15,6 +15,8 @@ import { middleware } from './kernel.js'
 
 router.get('/accueil', [AccueilsController, 'accueil']).as('accueil').use(middleware.auth())
 
+router.get('/createDeck', [AccueilsController, 'create']).as('showcreateDeck')
+
 router.get('/', [AuthController, 'redirectToLogin'])
 
 router.get('/login', [AuthController, 'login']).as('getlogin')
@@ -25,6 +27,6 @@ router.get('/register', [AuthController, 'register']).as('showregister')
 
 router.post('/register', [UsersController, 'register']).as('postregister')
 
-router.get('/users', [UsersController, 'getUsers'])
+router.get('/users', [UsersController, 'getUsers']).use(middleware.auth())
 
-router.post('/accueil/store', [AccueilsController, 'store'])
+router.post('/accueil/store', [AccueilsController, 'store']).as('accueil.store').use(middleware.auth())
