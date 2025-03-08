@@ -1,0 +1,21 @@
+@component('components/layout', { title: title })
+  <h3>
+    {{ title }}
+  </h3>
+  <a href="{{route('accueil')}}">< retour</a>
+  <div class="deck-container" >
+
+        
+          <td>
+            {{ deck.name }}
+          </td>          <br />
+          <td>
+            {{ deck.description }}
+          </td>
+
+     
+      
+    </div>
+
+  </div>
+@endcomponent

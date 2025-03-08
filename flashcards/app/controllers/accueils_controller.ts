@@ -35,6 +35,21 @@ export default class AccueilsController {
     return response.redirect().toRoute('accueil')
 
   }
+
+  public async deck({params, session, view,response,auth}: HttpContextContract) {
+    const deckId = params.id
+    if(isNaN(Number(deckId))){
+       session.flash({ errors: [{ message: "ID du deck invalide" }] })
+       return response.redirect().roRoute('accueil')
+    }
+
+    const deck = await Deck.findBy('id',deckId)
+    if (!deck) {
+      session.flash({ errors: [{ message: "deck inexistant" }] })
+      return response.notFound({ message: 'deck non trouvé' })
+    }
+    return view.render('pages/decks/showDeck', {title: `voici le deck ${deck.name}`, deck: deck})
+  }
   /**
    * Show individual record
    */

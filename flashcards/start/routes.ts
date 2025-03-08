@@ -30,3 +30,5 @@ router.post('/register', [UsersController, 'register']).as('postregister')
 router.get('/users', [UsersController, 'getUsers']).use(middleware.auth())
 
 router.post('/accueil/store', [AccueilsController, 'store']).as('accueil.store').use(middleware.auth())
+
+router.get('/deck/:id',[AccueilsController,'deck']).use(middleware.auth())
