@@ -47,3 +47,6 @@ router
   .get('/deck/:id/delete', [AccueilsController, 'delete'])
   .use(middleware.auth())
   .as('deck.delete')
+
+router.get('/deck/:id/edit', [AccueilsController, 'edit']).as('deck.edit')
+router.post('/deck/:id/update', [AccueilsController, 'update']).as('deck.update')

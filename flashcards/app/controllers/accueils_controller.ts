@@ -23,13 +23,21 @@ export default class AccueilsController {
    * Handle form submission for the create action
    */
   public async store({ request, session, response, auth }: HttpContextContract) {
-    const { name, description } = await request.validateUsing(deckValidator)
+    try {
+      const { name, description } = await request.validateUsing(deckValidator)
 
-    const user_id = auth.user.id
+      const user_id = auth.user.id
 
-    await Deck.create({ name, description, user_id })
-    session.flash('success', 'Le nouveau deck a été ajouté avec succès !')
-    return response.redirect().toRoute('accueil')
+      await Deck.create({ name, description, user_id })
+      session.flash('success', 'Le nouveau deck a été ajouté avec succès !')
+      return response.redirect().toRoute('accueil')
+    } catch (err) {
+      session.flash({
+        error:
+          "il faut que le nom du deck n'existe pas deja et que la description fasse 10 caractères !",
+      })
+      return response.redirect().toRoute('accueil')
+    }
   }
 
   public async deck({ params, session, view, response, auth }: HttpContextContract) {
@@ -60,10 +68,25 @@ export default class AccueilsController {
     session.flash('success', 'le deck a bien été supprimé !')
     return response.redirect().toRoute('accueil')
   }
-  /**
-   * Edit individual record
-   */
 
+  public async edit({ params, view }: HttpContextContract) {
+    const deck = await Deck.findOrFail(params.id)
+
+    return view.render('pages/decks/edit.edge', {
+      title: 'modifier un deck',
+      deck,
+    })
+  }
+
+  public async update({ params, request, session, response }: HttpContextContract) {
+    const { name, description } = await request.validateUsing(deckValidator)
+    const deck = await Deck.findOrFail(params.id)
+    if (deck) {
+      await deck.merge({ name, description }).save()
+    }
+    session.flash('success', 'le deck a été mis a jour !')
+    return response.redirect().toRoute('accueil')
+  }
   /**
    * Handle form submission for the edit action
    */
