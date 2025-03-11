@@ -12,6 +12,7 @@ import AuthController from '../app/controllers/auth_controllers.js'
 import UsersController from '#controllers/users_controller'
 import AccueilsController from '#controllers/accueils_controller'
 import { middleware } from './kernel.js'
+import CartesController from '../app/controllers/cartes_controller.js'
 
 router.get('/accueil', [AccueilsController, 'accueil']).as('accueil').use(middleware.auth())
 
@@ -32,3 +33,7 @@ router.get('/users', [UsersController, 'getUsers']).use(middleware.auth())
 router.post('/accueil/store', [AccueilsController, 'store']).as('accueil.store').use(middleware.auth())
 
 router.get('/deck/:id',[AccueilsController,'deck']).use(middleware.auth())
+
+router.get('/deck/:id/createCarte', [CartesController,'create']).use(middleware.auth()).as('deck.createCarte')
+
+router.post('/deck/:id/store',[CartesController,'store']).use(middleware.auth()).as('deck.store')
