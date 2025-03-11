@@ -5,7 +5,7 @@
   <a href="{{route('accueil')}}">< retour</a>
   <div class="deck-container" >
 
-        
+    <a href="{{ route('deck.delete', { id: deck.id }) }}" class="create-deck-link mt-6">suprimmer le deck</a>
           <td>
             {{ deck.name }}
           </td>          <br />
@@ -16,6 +16,7 @@
      
       
     </div>
+    
     <a href="{{ route('deck.createCarte', { id: deck.id }) }}" class="create-deck-link mt-6">Créer une carte</a>
   </div>
 @endcomponent
