@@ -44,11 +44,29 @@ node ace generate:key
 
 ## 7 créer un conteneur Docker
 
+Aller dans le dossier Docker et ouvrer un cmd a cet emplacement.
+
 ```sh
 docker compose up -d
 ```
 
 ## 8 créer la base de données
+
+### 8.1 créer la base de données
+
+executer ce script dans mysql
+
+```sql
+mysql -u root -proot;
+```
+
+```sql
+CREATE DATABASE app;
+```
+
+### 8.2 créer les tables dans la base de donnée
+
+retourner dans le dossier flashcards
 
 ```sh
 node ace migration:run
