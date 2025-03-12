@@ -49,4 +49,4 @@ router
   .as('deck.delete')
 
 router.get('/deck/:id/edit', [AccueilsController, 'edit']).as('deck.edit')
-router.post('/deck/:id/update', [AccueilsController, 'mupdate']).as('deck.update')
+router.post('/deck/:id/update', [AccueilsController, 'update']).as('deck.update')
