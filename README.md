@@ -1,7 +1,7 @@
 # FlashCards
 
 FlashCards est une application web permettant de créer et gérer des cartes mémoire pour faciliter l'apprentissage.
-![alt text](https://github.com/antoineFabr/FlashCards/blob/main/2a4aa839-4d44-4a65-91c2-38911d4faf18.webp?raw=true)
+![alt text](https://raw.githubusercontent.com/antoineFabr/FlashCards/refs/heads/main/img/2a4aa839-4d44-4a65-91c2-38911d4faf18.webp?raw=true)
 
 ## 1 Prérequis
 
