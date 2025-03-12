@@ -9,7 +9,7 @@ Avant de commencer l'installation, assurez-vous d'avoir les logiciels suivants i
 
 - Node.js (v18.16.0)
 - npm (v9.5.1) ou Yarn (v1.22.19)
-- Docker (v24.0.7) [Optionnel]
+- Docker (v24.0.7)
 - Git (v2.40.1)
 
 ## 2 déplacer vous dans le fichier flashcards du repo
@@ -39,6 +39,19 @@ yarn install
 
 ```sh
 node ace generate:key
+
+```
+
+## 7 créer un conteneur Docker
+
+```sh
+docker compose up -d
+```
+
+## 8 créer la base de données
+
+```sh
+node ace migration:run
 
 ```
 
