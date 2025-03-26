@@ -1,26 +1,28 @@
-ARG NODE_IMAGE=node:16.13.1-alpine
+ARG NODE_IMAGE=node:20.12.1-bullseye-slim
 
-FROM $NODE_IMAGE AS base
-RUN apk --no-cache add dumb-init
-RUN mkdir -p /home/node/app && chown node:node /home/node/app
+###### First Stage - Creating base ######
+FROM $NODE_IMAGE as base
+RUN mkdir -p /home/node/app && chown node:node /home/node/app 
 WORKDIR /home/node/app
 USER node
 RUN mkdir tmp
 
+###### Second Stage - Installing dependencies ######
 FROM base AS dependencies
 COPY --chown=node:node ./package*.json ./
 RUN npm ci
 COPY --chown=node:node . .
 
+###### Third Stage - Building Stage ######
 FROM dependencies AS build
-RUN node ace build --production --ignore-ts-errors
+RUN node ace build
 
-FROM base AS production
+###### Final Stage - Production ######
+FROM base as production
 ENV NODE_ENV=production
-ENV PORT=3333
-ENV HOST=127.0.0.1
+ENV PORT=$PORT
+ENV HOST=0.0.0.0
 COPY --chown=node:node ./package*.json ./
-RUN npm ci --production
+RUN npm ci --only=production
 COPY --chown=node:node --from=build /home/node/app/build .
-EXPOSE 3333
-CMD [ "dumb-init", "node", "server.js" ]
+EXPOSE $PORT

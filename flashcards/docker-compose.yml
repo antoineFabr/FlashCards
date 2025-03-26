@@ -19,7 +19,7 @@ services:
       - mysql
     build:
       context: .
-      target: dependencies
+      target: build
     ports:
       - 3333:3333
 
@@ -30,7 +30,7 @@ services:
 
     volumes:
       - ./:/home/node/app
-    command: dumb-init node ace serve --watch --node-args="--inspect=0.0.0.0"
+    command: node ace serve --watch
 
 volumes:
   dbdata:
