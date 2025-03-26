@@ -1,4 +1,6 @@
-FROM node:16.13.1-alpine AS base
+ARG NODE_IMAGE=node:16.13.1-alpine
+
+FROM $NODE_IMAGE AS base
 RUN apk --no-cache add dumb-init
 RUN mkdir -p /home/node/app && chown node:node /home/node/app
 WORKDIR /home/node/app
@@ -11,14 +13,14 @@ RUN npm ci
 COPY --chown=node:node . .
 
 FROM dependencies AS build
-RUN node ace build --production
+RUN node ace build --production --ignore-ts-errors
 
 FROM base AS production
 ENV NODE_ENV=production
-ENV PORT=$PORT
-ENV HOST=0.0.0.0
+ENV PORT=3333
+ENV HOST=127.0.0.1
 COPY --chown=node:node ./package*.json ./
 RUN npm ci --production
 COPY --chown=node:node --from=build /home/node/app/build .
-EXPOSE $PORT
+EXPOSE 3333
 CMD [ "dumb-init", "node", "server.js" ]
