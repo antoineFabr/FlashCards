@@ -46,11 +46,11 @@
     "prettier": "^3.4.2",
     "typescript": "~5.7",
     "vite": "^6.0.3",
-    "ts-node-maintained": "10.9.5",
     "@adonisjs/tsconfig": "^1.4.0",
     "@swc/core": "1.10.1"
   },
   "dependencies": {
+    "ts-node-maintained": "10.9.5",
     "@adonisjs/auth": "^9.2.4",
     "@adonisjs/core": "^6.17.2",
     "@adonisjs/lucid": "^21.5.1",
